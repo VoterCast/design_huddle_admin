@@ -150,7 +150,7 @@ module DesignHuddleAdmin
     # @return true if the model is valid
     def valid?
       return false if @format.nil?
-      format_validator = EnumAttributeValidator.new('String', ["pdf"])
+      format_validator = EnumAttributeValidator.new('String', ["pdf", "png", "jpg"])
       return false unless format_validator.valid?(@format)
       true
     end
@@ -158,7 +158,7 @@ module DesignHuddleAdmin
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] format Object to be assigned
     def format=(format)
-      validator = EnumAttributeValidator.new('String', ["pdf"])
+      validator = EnumAttributeValidator.new('String', ["pdf", "png", "jpg"])
       unless validator.valid?(format)
         fail ArgumentError, "invalid value for \"format\", must be one of #{validator.allowable_values}."
       end
